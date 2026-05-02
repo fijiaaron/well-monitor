@@ -155,7 +155,7 @@ function App() {
 
         <div className="region mono">
           <span className="region-label">REGION</span>
-          <span className="region-val">San Juan Basin / NM</span>
+          <span className="region-val">San Jacinto Basin / TX</span>
           <span className="region-sep">//</span>
           <span className="region-val">{new Date().toISOString().slice(0, 10)}</span>
         </div>
