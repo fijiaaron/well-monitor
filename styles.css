@@ -110,8 +110,6 @@ html, body, #root {
 .wells-layer { z-index: 2; }
 
 /* Markers */
-.well { transition: transform 0.12s ease; }
-.well.hovered { transform: scale(1.15) translate(0, 0); }
 .well text { user-select: none; }
 
 /* Plume drift */

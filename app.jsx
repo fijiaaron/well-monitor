@@ -16,6 +16,7 @@ function App() {
   const [tweaks, setTweak] = window.useTweaks(TWEAK_DEFAULTS);
 
   const [selected, setSelected] = useState(null);
+  const [hovered, setHovered] = useState(null); // { well, x, y } in client coords
   const [tick, setTick] = useState(0);
   const [history, setHistory] = useState({}); // wellId -> last 30 readings
   const [readings, setReadings] = useState({}); // wellId -> latest reading
@@ -74,7 +75,21 @@ function App() {
   // Pollutant focus — when filter is set, dim wells not emitting that strongly
   const pollutantFocus = tweaks.pollutantFilter;
 
-  const noop = useCallback(() => {}, []);
+  const hoverHideTimer = useRef(null);
+  const handleHover = useCallback((well, e) => {
+    if (hoverHideTimer.current) {
+      clearTimeout(hoverHideTimer.current);
+      hoverHideTimer.current = null;
+    }
+    setHovered({ well, x: e.clientX, y: e.clientY });
+  }, []);
+  const handleLeave = useCallback(() => {
+    if (hoverHideTimer.current) clearTimeout(hoverHideTimer.current);
+    hoverHideTimer.current = setTimeout(() => {
+      setHovered(null);
+      hoverHideTimer.current = null;
+    }, 1000);
+  }, []);
   const handleClick = useCallback((well) => {
     setSelected(prev => (prev && prev.id === well.id) ? null : well);
   }, []);
@@ -170,15 +185,25 @@ function App() {
             <window.WellMarker
               key={w.id}
               well={w}
-              isHovered={false}
+              isHovered={hovered?.well.id === w.id}
               isSelected={selected?.id === w.id}
-              onHover={noop}
-              onLeave={noop}
+              onHover={handleHover}
+              onLeave={handleLeave}
               onClick={handleClick}
               pulsePhase={pulsePhase}
             />
           ))}
         </svg>
+
+        {/* Hover tooltip */}
+        {hovered && readings[hovered.well.id] && (
+          <window.Tooltip
+            well={hovered.well}
+            reading={readings[hovered.well.id]}
+            x={hovered.x}
+            y={hovered.y}
+          />
+        )}
 
         {/* Legend */}
         <div className="legend">
