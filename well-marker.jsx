@@ -50,9 +50,9 @@ function Plume({ well, severity, windAngle, windSpeed, showRings }) {
           <circle cx={well.x} cy={well.y} r={r * 0.7}  strokeWidth="0.8" strokeDasharray="3 4" />
           <circle cx={well.x} cy={well.y} r={r}        strokeWidth="0.8" strokeDasharray="4 5" />
           <text x={well.x + r * 0.35 + 2} y={well.y - 1} fontSize="7"
-                fontFamily="'JetBrains Mono', monospace" fill={color}>10ft</text>
-          <text x={well.x + r * 0.7  + 2} y={well.y - 1} fontSize="7"
                 fontFamily="'JetBrains Mono', monospace" fill={color}>100ft</text>
+          <text x={well.x + r * 0.7  + 2} y={well.y - 1} fontSize="7"
+                fontFamily="'JetBrains Mono', monospace" fill={color}>300ft</text>
           <text x={well.x + r        + 2} y={well.y - 1} fontSize="7"
                 fontFamily="'JetBrains Mono', monospace" fill={color}>500ft</text>
         </g>
