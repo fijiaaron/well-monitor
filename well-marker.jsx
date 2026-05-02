@@ -43,7 +43,7 @@ function Plume({ well, severity, windAngle, windSpeed, showRings }) {
         style={{ filter: "blur(3px)" }}
       />
 
-      {/* Distance rings (10ft / 100ft / 500ft labels) */}
+      {/* Distance rings (100ft / 500ft / 1000ft labels) */}
       {showRings && (
         <g className="plume-rings" stroke={color} fill="none" opacity="0.55">
           <circle cx={well.x} cy={well.y} r={r * 0.35} strokeWidth="0.8" strokeDasharray="2 3" />
