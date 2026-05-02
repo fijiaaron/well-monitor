@@ -121,7 +121,7 @@ function InfoPanel({ well, history, onClose }) {
                       : p === "BTEX" ? "#7a4ea8"
                       : p === "VOC" ? "#c89832"
                       : "#5b6b78";
-          const labels = { CH4: "Methane", H2S: "Hydrogen Sulfide", BTEX: "Benzene/BTEX", VOC: "VOCs", CO2: "Carbon Dioxide" };
+          const labels = { CH4: "Methane", H2S: "Hydrogen Sulfide", BTEX: "Benzene/BTEX", VOC: "Volatile Organic Compounds", CO2: "Carbon Dioxide" };
           return (
             <div key={p} className={`pollutant ${over ? "over" : ""}`}>
               <div className="poll-head">
