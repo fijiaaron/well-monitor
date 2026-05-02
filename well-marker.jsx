@@ -14,7 +14,8 @@ function Plume({ well, severity, windAngle, windSpeed, showRings }) {
   const dy = Math.sin(windAngle) * windSpeed * 18;
 
   const isLeak = well.status === "leaking";
-  const color = isLeak ? "#c8442a" : meta.color;
+  const color = isLeak ? "rgb(200, 68, 42)" : meta.color;
+  const outercolor = isLeak ? "purple " : meta.color;
 
   return (
     <g className="plume" pointerEvents="none">
@@ -25,7 +26,7 @@ function Plume({ well, severity, windAngle, windSpeed, showRings }) {
         fill={color}
         opacity={0.10 + severity * 0.10}
         style={{ filter: "blur(8px)" }}
-        transform={`rotate(${windAngle * 180 / Math.PI} ${well.x + dx} ${well.y + dy})`}
+        transform={`rotate(${windAngle * -180 / Math.PI} ${well.x + dx} ${well.y + dy})`}
       />
       <ellipse
         cx={well.x + dx * 0.55} cy={well.y + dy * 0.55}
@@ -33,7 +34,7 @@ function Plume({ well, severity, windAngle, windSpeed, showRings }) {
         fill={color}
         opacity={0.16 + severity * 0.12}
         style={{ filter: "blur(5px)" }}
-        transform={`rotate(${windAngle * 180 / Math.PI} ${well.x + dx * 0.55} ${well.y + dy * 0.55})`}
+        transform={`rotate(${windAngle * -90 / Math.PI} ${well.x + dx * 0.55} ${well.y + dy * 0.55})`}
       />
       <circle
         cx={well.x + dx * 0.2} cy={well.y + dy * 0.2}
